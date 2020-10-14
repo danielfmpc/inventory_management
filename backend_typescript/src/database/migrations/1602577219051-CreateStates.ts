@@ -16,7 +16,7 @@ export class CreateStates1602577219051 implements MigrationInterface {
 							default: 'uuid_generate_v4()'
 						},
 						{
-							name: 'states_name',
+							name: 'state_name',
 							type: 'varchar',
 							isUnique: true
 						},
