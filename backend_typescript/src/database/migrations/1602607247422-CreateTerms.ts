@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import {MigrationInterface, QueryRunner, Table, TableForeignKey} from "typeorm";
 
 export class CreateTerms1602607247422 implements MigrationInterface {
 
@@ -21,6 +21,14 @@ export class CreateTerms1602607247422 implements MigrationInterface {
 							isUnique: true
 						},
 						{
+							name: 'equipments_id',
+							type: 'uuid'
+						},
+						{
+							name: 'users_id',
+							type: 'uuid'
+						},
+						{
 							name: 'created_at',
 							type: 'timestamp',
 							default: 'now()',
@@ -33,10 +41,29 @@ export class CreateTerms1602607247422 implements MigrationInterface {
 					]
 				}
 			)
-		)
+		);
+		await queryRunner.createForeignKey('terms', new TableForeignKey({
+			name: 'FK_TERMS_EQUIPMENTS',
+			columnNames: ['equipments_id'],
+			referencedColumnNames: ['id'],
+			referencedTableName: 'equipments',
+			onDelete: 'SET NULL',
+			onUpdate: 'CASCADE',
+		}));
+
+		await queryRunner.createForeignKey('terms', new TableForeignKey({
+			name: 'FK_TERMS_USERS',
+			columnNames: ['users_id'],
+			referencedColumnNames: ['id'],
+			referencedTableName: 'users',
+			onDelete: 'SET NULL',
+			onUpdate: 'CASCADE',
+		}));
 	}
 
 	public async down(queryRunner: QueryRunner): Promise<void> {
+		await queryRunner.dropForeignKey('terms', 'FK_TERMS_EQUIPMENTS');
+		await queryRunner.dropForeignKey('terms', 'FK_TERMS_USERS');
 		await queryRunner.dropTable('terms');
 	}
 

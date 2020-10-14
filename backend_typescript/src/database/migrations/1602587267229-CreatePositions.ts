@@ -1,6 +1,6 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import {MigrationInterface, QueryRunner, Table, TableForeignKey} from "typeorm";
 
-export class CreatePositions1602607258229 implements MigrationInterface {
+export class CreatePositions1602587267229 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
 		await queryRunner.createTable(
@@ -21,6 +21,10 @@ export class CreatePositions1602607258229 implements MigrationInterface {
 							isUnique: true
 						},
 						{
+							name: 'permissions_id',
+							type: 'uuid'
+						},
+						{
 							name: 'created_at',
 							type: 'timestamp',
 							default: 'now()',
@@ -33,10 +37,19 @@ export class CreatePositions1602607258229 implements MigrationInterface {
 					]
 				}
 			)
-		)
+		);
+		await queryRunner.createForeignKey('positions', new TableForeignKey({
+			name: 'FK_POSITIONS_PERMISSIONS',
+			columnNames: ['permissions_id'],
+			referencedColumnNames: ['id'],
+			referencedTableName: 'permissions',
+			onDelete: 'SET NULL',
+			onUpdate: 'CASCADE'
+		}));
 	}
 
 	public async down(queryRunner: QueryRunner): Promise<void> {
+		await queryRunner.dropForeignKey('positions', 'FK_POSITIONS_PERMISSIONS')
 		await queryRunner.dropTable('positions');
 	}
 

@@ -1,12 +1,12 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class CreateStates1602607219051 implements MigrationInterface {
+export class CreateBrands1602607247420 implements MigrationInterface {
 
 	public async up(queryRunner: QueryRunner): Promise<void> {
 		await queryRunner.createTable(
 			new Table(
 				{
-					name: 'states',
+					name: 'brands',
 					columns: [
 						{
 							name: 'id',
@@ -16,7 +16,7 @@ export class CreateStates1602607219051 implements MigrationInterface {
 							default: 'uuid_generate_v4()'
 						},
 						{
-							name: 'states_name',
+							name: 'brand_name',
 							type: 'varchar',
 							isUnique: true
 						},
@@ -37,7 +37,7 @@ export class CreateStates1602607219051 implements MigrationInterface {
 	}
 
 	public async down(queryRunner: QueryRunner): Promise<void> {
-		await queryRunner.dropTable('states');
+		await queryRunner.dropTable('brands');
 	}
 
 }
