@@ -12,7 +12,7 @@ class Status {
   id: string;
 
   @Column()
-  name: string;
+  status_name: string;
 
   @CreateDateColumn()
   created_at: Date;
