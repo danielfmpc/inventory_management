@@ -3,19 +3,19 @@ import States from "../models/States";
 import StatesRepository from "../repositories/StatesRepository";
 
 interface Request {
-  states_name: string;
+  state_name: string;
 }
 
 class CreateStatesServices {
-  public async execute({states_name}:Request): Promise<States>{
+  public async execute({state_name}:Request): Promise<States>{
     const statesRepository = getCustomRepository(StatesRepository);
-    const findStates = await statesRepository.findByStates({states_name});
+    const findStates = await statesRepository.findByStates({state_name});
 
     if (findStates) {
       throw new Error("Estado já cadastrado");
     }
 
-    const state = statesRepository.create({states_name});
+    const state = statesRepository.create({state_name});
     await statesRepository.save(state);
 
     return state;

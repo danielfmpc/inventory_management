@@ -12,11 +12,11 @@ statesRouter.get('/', async (request, response)=>{
 });
 statesRouter.post('/', async (request, response)=>{
   try {
-    const {states_name} = request.body;
+    const {state_name} = request.body;
 
     const createState = new CreateStatesServices();
 
-    const state = await createState.execute({states_name});
+    const state = await createState.execute({state_name});
 
     return response.json(state);
   } catch (err) {

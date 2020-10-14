@@ -17,13 +17,13 @@ class CreateStatusServices {
       throw new Error("Status já cadastrado");
     }
 
-    const statu = statusRepository.create({
+    const statusCreate = statusRepository.create({
       status_name,
       status
     });
-    await statusRepository.save(statu);
+    await statusRepository.save(statusCreate);
 
-    return statu;
+    return statusCreate;
   }
 }
 

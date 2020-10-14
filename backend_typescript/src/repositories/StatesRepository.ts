@@ -2,14 +2,14 @@ import { EntityRepository, Repository } from "typeorm";
 import States from "../models/States";
 
 interface Request {
-  states_name: string;
+  state_name: string;
 }
 
 @EntityRepository(States)
 class StatesRepository extends Repository<States>{
-  public async findByStates({states_name}: Request): Promise<States | null>{
+  public async findByStates({state_name}: Request): Promise<States | null>{
     const findStatus = await this.findOne({
-      where: { states_name}
+      where: { state_name}
     });
 
     if(findStatus) {

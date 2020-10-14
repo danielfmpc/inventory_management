@@ -12,7 +12,7 @@ class States {
   id: string;
 
   @Column()
-  states_name: string;
+  state_name: string;
 
   @CreateDateColumn()
   created_at: Date;
