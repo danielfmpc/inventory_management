@@ -21,6 +21,10 @@ export class CreatePermissions1602587266364 implements MigrationInterface {
 							isUnique: true
 						},
 						{
+							name: 'permission',
+							type: 'integer'
+						},
+						{
 							name: 'created_at',
 							type: 'timestamp',
 							default: 'now()',

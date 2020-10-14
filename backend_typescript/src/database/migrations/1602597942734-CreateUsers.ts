@@ -52,7 +52,7 @@ export class CreateUsers1602597942734 implements MigrationInterface {
 							type: 'uuid',							
 						},
 						{
-							name: 'positions_id',
+							name: 'permissions_id',
 							type: 'uuid',							
 						},
 						{
@@ -95,10 +95,10 @@ export class CreateUsers1602597942734 implements MigrationInterface {
 			onUpdate: 'CASCADE',
 		}));
 		await queryRunner.createForeignKey('users', new TableForeignKey({
-			name: 'FK_USERS_POSITIONS',
-			columnNames: ['positions_id'],
+			name: 'FK_USERS_PERMISSIONS',
+			columnNames: ['permissions_id'],
 			referencedColumnNames: ['id'],
-			referencedTableName: 'positions',
+			referencedTableName: 'permissions',
 			onDelete: 'SET NULL',
 			onUpdate: 'CASCADE',
 		}));
@@ -108,7 +108,7 @@ export class CreateUsers1602597942734 implements MigrationInterface {
 		await queryRunner.dropForeignKey('users','FK_USERS_STATUS');
 		await queryRunner.dropForeignKey('users','FK_USERS_BRANCHS');
 		await queryRunner.dropForeignKey('users','FK_USERS_SECTORS');
-		await queryRunner.dropForeignKey('users','FK_USERS_POSITIONS');
+		await queryRunner.dropForeignKey('users','FK_USERS_PERMISSIONS');
 		await queryRunner.dropTable('users');
 	}
 
