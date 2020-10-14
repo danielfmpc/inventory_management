@@ -14,6 +14,9 @@ class Status {
   @Column()
   status_name: string;
 
+  @Column()
+  status: boolean;
+
   @CreateDateColumn()
   created_at: Date;
 

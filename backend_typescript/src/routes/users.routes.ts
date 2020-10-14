@@ -15,7 +15,7 @@ usersRouter.get('/', async (request, response)=> {
 
 usersRouter.post('/', async (request, response)=> {
   try {
-    const { name, date } = request.body;
+    const { full_name, date } = request.body;
   
     const parseDate = parseISO(date);
 
@@ -23,7 +23,7 @@ usersRouter.post('/', async (request, response)=> {
 
     const user = await createUser.execute({
       date: parseDate,
-      name
+      full_name
     });
 
     return response.json(user);

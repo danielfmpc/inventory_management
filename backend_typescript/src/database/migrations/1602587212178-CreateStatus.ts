@@ -17,8 +17,12 @@ export class CreateStatus1602587212178 implements MigrationInterface {
 						},
 						{
 							name: 'status_name',
-							type: 'bool'
+							type: 'varchar'
 						},
+						{
+							name: 'status',
+							type: 'bool'
+						},						
 						{
 							name: 'created_at',
 							type: 'timestamp',
