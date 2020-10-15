@@ -1,23 +1,23 @@
 import { EntityRepository, Repository } from "typeorm";
-import Sectors from "../models/Sectors";
+import Brands from "../models/Brands";
 
 interface Request {
-  sector_name: string;
+  brand_name: string;
 }
 
-@EntityRepository(Sectors)
-class SectorsRepository extends Repository<Sectors>{
-  public async findBySector({sector_name}: Request): Promise<Sectors | null>{
+@EntityRepository(Brands)
+class BrandsRepository extends Repository<Brands>{
+  public async findByBrand({brand_name}: Request): Promise<Brands | null>{
     const findStatus = await this.findOne({
-      where: { sector_name}
+      where: { brand_name}
     });
 
     if(findStatus) {
-      throw new Error("Setor já Cadastrado");
+      throw new Error("Marca já Cadastrada");
     }
 
     return findStatus || null;
   }
 }
 
-export default SectorsRepository
+export default BrandsRepository
