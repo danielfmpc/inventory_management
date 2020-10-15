@@ -29,6 +29,10 @@ export class CreateBranchs1602587234078 implements MigrationInterface {
 							type: 'uuid'
 						},
 						{
+							name: 'companys_id',
+							type: 'uuid'
+						},
+						{
 							name: 'created_at',
 							type: 'timestamp',
 							default: 'now()',
@@ -58,11 +62,20 @@ export class CreateBranchs1602587234078 implements MigrationInterface {
 			onDelete: 'SET NULL',
 			onUpdate: 'CASCADE'
 		}));
+		await queryRunner.createForeignKey('branchs', new TableForeignKey({
+			name: 'FK_BRANCHS_COMPANYS',
+			columnNames: ['companys_id'],
+			referencedColumnNames: ['id'],
+			referencedTableName: 'companys',
+			onDelete: 'SET NULL',
+			onUpdate: 'CASCADE'
+		}));
 	}
 
 	public async down(queryRunner: QueryRunner): Promise<void> {		
 		await queryRunner.dropForeignKey('branchs', 'FK_BRANCHS_STATUS');
 		await queryRunner.dropForeignKey('branchs', 'FK_BRANCHS_STATES');
+		await queryRunner.dropForeignKey('branchs', 'FK_BRANCHS_COMPANYS');
 		await queryRunner.dropTable('branchs');
 	}
 
