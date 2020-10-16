@@ -2,9 +2,12 @@ import {
   Column, 
   CreateDateColumn, 
   Entity, 
+  JoinColumn, 
+  ManyToOne, 
   PrimaryGeneratedColumn, 
   UpdateDateColumn 
 } from "typeorm";
+import Status from "./Status";
 
 @Entity('users')
 class User {
@@ -29,6 +32,10 @@ class User {
   @Column()
   status_id: string;
 
+  @ManyToOne(()=> Status)
+  @JoinColumn({name: 'status_id'})
+  status: Status;
+
   @Column()
   branchs_id: string;
   
@@ -36,7 +43,7 @@ class User {
   sectors_id: string;
 
   @Column()
-  positons_id: string;
+  permissions_users_id: string;
 
 
   @CreateDateColumn()

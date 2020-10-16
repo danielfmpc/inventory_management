@@ -1,5 +1,5 @@
 import { getCustomRepository } from "typeorm";
-import Sectors from "../models/Sectors";
+import Sector from "../models/Sector";
 import SectorsRepository from "../repositories/SectorsRepository";
 
 interface Request {
@@ -7,7 +7,7 @@ interface Request {
 }
 
 class CreateSectorsServices {
-  public async execute({sector_name}:Request): Promise<Sectors>{
+  public async execute({sector_name}:Request): Promise<Sector>{
     const sectorsRepository = getCustomRepository(SectorsRepository);
     const findSector = await sectorsRepository.findBySector({sector_name});
 

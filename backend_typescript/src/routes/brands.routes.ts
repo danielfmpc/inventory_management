@@ -10,6 +10,7 @@ brandsRouter.get('/', async (request, response)=>{
   const brand = await brandsRepository.find();
   return response.json(brand);
 });
+
 brandsRouter.post('/', async (request, response)=>{
   try {
     const {brand_name} = request.body;

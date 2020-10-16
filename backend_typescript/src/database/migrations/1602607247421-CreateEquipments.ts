@@ -30,15 +30,6 @@ export class CreateEquipments1602607247421 implements MigrationInterface {
 							isUnique: true
 						},
 						{
-							name: 'size',
-							type: 'varchar',
-							isNullable: true
-						},
-						{
-							name: 'quantity',
-							type: 'integer',
-						},
-						{
 							name: 'brands_id',
 							type: 'uuid'
 						},
@@ -48,6 +39,10 @@ export class CreateEquipments1602607247421 implements MigrationInterface {
 						},
 						{
 							name: 'branchs_id',
+							type: 'uuid'
+						},
+						{
+							name: 'sectors_id',
 							type: 'uuid'
 						},
 						{
@@ -85,6 +80,14 @@ export class CreateEquipments1602607247421 implements MigrationInterface {
 			columnNames: ['branchs_id'],
 			referencedColumnNames: ['id'],
 			referencedTableName: 'branchs',
+			onDelete: 'SET NULL',
+			onUpdate: 'CASCADE'
+		}));
+		await queryRunner.createForeignKey('equipments', new TableForeignKey({
+			name: 'FK_EQUIPMENTS_SECTORS',
+			columnNames: ['sectors_id'],
+			referencedColumnNames: ['id'],
+			referencedTableName: 'sectors',
 			onDelete: 'SET NULL',
 			onUpdate: 'CASCADE'
 		}));

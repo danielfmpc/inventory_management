@@ -1,5 +1,5 @@
 import { getCustomRepository } from "typeorm";
-import States from "../models/States";
+import State from "../models/State";
 import StatesRepository from "../repositories/StatesRepository";
 
 interface Request {
@@ -7,7 +7,7 @@ interface Request {
 }
 
 class CreateStatesServices {
-  public async execute({state_name}:Request): Promise<States>{
+  public async execute({state_name}:Request): Promise<State>{
     const statesRepository = getCustomRepository(StatesRepository);
     const findStates = await statesRepository.findByStates({state_name});
 

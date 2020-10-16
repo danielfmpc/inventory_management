@@ -6,7 +6,7 @@ export class CreatePermissions1602587266364 implements MigrationInterface {
 		await queryRunner.createTable(
 			new Table(
 				{
-					name: 'permissions',
+					name: 'permissions_users',
 					columns: [
 						{
 							name: 'id',
@@ -21,7 +21,7 @@ export class CreatePermissions1602587266364 implements MigrationInterface {
 							isUnique: true
 						},
 						{
-							name: 'permission',
+							name: 'permission_code',
 							type: 'integer'
 						},
 						{
@@ -41,7 +41,7 @@ export class CreatePermissions1602587266364 implements MigrationInterface {
 	}
 
 	public async down(queryRunner: QueryRunner): Promise<void> {
-		await queryRunner.dropTable('permissions');
+		await queryRunner.dropTable('permissions_users');
 	}
 
 }

@@ -1,7 +1,5 @@
 import { getCustomRepository } from "typeorm";
-import Sectors from "../models/Sectors";
-import Situations from "../models/situations";
-import SectorsRepository from "../repositories/SectorsRepository";
+import Situation from "../models/Situation";
 import SituationsRepository from "../repositories/SituationsRepository";
 
 interface Request {
@@ -9,7 +7,7 @@ interface Request {
 }
 
 class CreateSituationsServices {
-  public async execute({situation_name}:Request): Promise<Situations>{
+  public async execute({situation_name}:Request): Promise<Situation>{
     const situationsRepository = getCustomRepository(SituationsRepository);
     const findSituation = await situationsRepository.findBySituation({situation_name});
 

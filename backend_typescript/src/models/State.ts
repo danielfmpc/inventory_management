@@ -6,13 +6,13 @@ import {
   UpdateDateColumn 
 } from "typeorm";
 
-@Entity('brands')
-class Brands {
+@Entity('states')
+class State {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
-  brand_name: string;
+  state_name: string;
 
   @CreateDateColumn()
   created_at: Date;
@@ -21,4 +21,4 @@ class Brands {
   updated_at: Date;
 }
 
-export default Brands;
+export default State;

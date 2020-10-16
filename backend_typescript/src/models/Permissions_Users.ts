@@ -6,13 +6,16 @@ import {
   UpdateDateColumn 
 } from "typeorm";
 
-@Entity('states')
-class States {
+@Entity('permissions_users')
+class Permissions_Users {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
-  state_name: string;
+  permission_name: string;
+
+  @Column()
+  permission_code: number;
 
   @CreateDateColumn()
   created_at: Date;
@@ -21,4 +24,4 @@ class States {
   updated_at: Date;
 }
 
-export default States;
+export default Permissions_Users;

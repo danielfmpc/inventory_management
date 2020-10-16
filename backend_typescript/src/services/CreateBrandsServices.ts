@@ -1,5 +1,5 @@
-import { getCustomRepository } from "typeorm";
-import Brands from "../models/Brands";
+import { getCustomRepository, getRepository } from "typeorm";
+import Brand from "../models/Brand";
 import BrandsRepository from "../repositories/BrandsRepository";
 
 interface Request {
@@ -7,13 +7,23 @@ interface Request {
 }
 
 class CreateBrandsServices {
-  public async execute({brand_name}:Request): Promise<Brands>{
-    const brandsRepository = getCustomRepository(BrandsRepository);
-    const findBrand = await brandsRepository.findByBrand({brand_name});
+  public async execute({brand_name}:Request): Promise<Brand>{
+    const brandsRepository = getRepository(Brand);
 
-    if (findBrand) {
-      throw new Error("Setor já cadastrado");
+    const checkBrandsExists = await brandsRepository.findOne({
+      where: {brand_name}
+    });
+
+    if (checkBrandsExists) {
+      throw new Error("Marca já cadastrada");
     }
+
+    // const brandsRepository = getCustomRepository(BrandsRepository);
+    // const findBrand = await brandsRepository.findByBrand({brand_name});
+
+    // if (findBrand) {
+    //   throw new Error("Setor já cadastrado");
+    // }
 
     const brand = brandsRepository.create({brand_name});
     await brandsRepository.save(brand);

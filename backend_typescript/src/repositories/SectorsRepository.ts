@@ -1,13 +1,13 @@
 import { EntityRepository, Repository } from "typeorm";
-import Sectors from "../models/Sectors";
+import Sector from "../models/Sector";
 
 interface Request {
   sector_name: string;
 }
 
-@EntityRepository(Sectors)
-class SectorsRepository extends Repository<Sectors>{
-  public async findBySector({sector_name}: Request): Promise<Sectors | null>{
+@EntityRepository(Sector)
+class SectorsRepository extends Repository<Sector>{
+  public async findBySector({sector_name}: Request): Promise<Sector | null>{
     const findStatus = await this.findOne({
       where: { sector_name}
     });
