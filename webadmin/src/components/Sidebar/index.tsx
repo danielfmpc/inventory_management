@@ -48,13 +48,53 @@ export default class Sidebar extends Component {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/" className="nav-link">
+                <Link to="/states" className="nav-link">
                   <i className="nav-icon far fa-image" />
                   <p>
-                    Gallery
+                    Estados
                   </p>
                 </Link>
-              </li>             
+              </li>   
+              <li className="nav-item">
+                <Link to="/brands" className="nav-link">
+                  <i className="nav-icon far fa-image" />
+                  <p>
+                    Marcas
+                  </p>
+                </Link>
+              </li>  
+              <li className="nav-item">
+                <Link to="/companys" className="nav-link">
+                  <i className="nav-icon far fa-image" />
+                  <p>
+                    Empresas
+                  </p>
+                </Link>
+              </li>   
+              <li className="nav-item">
+                <Link to="/permissions" className="nav-link">
+                  <i className="nav-icon far fa-image" />
+                  <p>
+                    Permissões
+                  </p>
+                </Link>
+              </li>   
+              <li className="nav-item">
+                <Link to="/situations" className="nav-link">
+                  <i className="nav-icon far fa-image" />
+                  <p>
+                    Situação
+                  </p>
+                </Link>
+              </li> 
+              <li className="nav-item">
+                <Link to="/sectors" className="nav-link">
+                  <i className="nav-icon far fa-image" />
+                  <p>
+                    Setores
+                  </p>
+                </Link>
+              </li>     
               <li className="nav-header">MISCELLANEOUS</li>
             </ul>
           </nav>
