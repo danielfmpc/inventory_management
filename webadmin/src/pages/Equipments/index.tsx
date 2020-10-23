@@ -1,45 +1,49 @@
-import React, { useEffect, useState } from 'react';
-import TableCompanys from '../../components/Table/TableCompanys';
-import TableCompanysItem from '../../components/Table/TableCompanys/TableCompanysItem';
+import React, { useEffect, useState } from 'react'
+import TableEquipments from '../../components/Table/TableEquipments';
+import TableEquipmentsItem from '../../components/Table/TableEquipments/TableEquipmentsItem';
 import TopHeader from '../../components/TopHeader';
-
 import api from '../../services/api';
 
-interface Companys {
+interface Equipments {
   id: string;
-  company_name: string;
-  cnpj: string;
+  full_name: string;
+  equipment_name: string,
+  description: string,
+  patrimony: string,
   created_at: Date;
   updated_at: Date;
-  status: {
-    status_name: string,
-    status: boolean,
+  branch: {
+    branch_name: string,
+  }
+  brand: {
+    brand_name: string,
+  }
+  sector: {
+    sector_name: string,
+  }
+  situation: {
+    situation_name: string,
   }
 }
 
-const Companys = () => {
-  const [companys, setCompanys] = useState<Companys[]>([]);
-  useEffect(
-    () => {
-      api.get('companys').then(
-        response => {
-          setCompanys(response.data);
-          
-        }
-      );
-    }, []
-  );
-
+const Equipments = () => {
+  const [equipments, setEquipments] = useState<Equipments[]>([]);
+  
+  useEffect(() => {
+    api.get('equipments').then(response => {
+      setEquipments(response.data)
+    });
+  }, []);
   return (
     <div className="content-wrapper">
-      <TopHeader menu="Empresas" />
+      <TopHeader menu="Equipamentos" />
       <section className="content">
         <div className="container-fluid">
           <div className="row">
             <div className="col-12">
               <div className="card">
                 <div className="card-header">
-                  <h3 className="card-title">Estados cadastrados:</h3>
+                  <h3 className="card-title">Equipamentos cadastrados:</h3>
                   <div className="card-tools">
                     <div className="input-group input-group-sm" style={{ width: 150 }}>
                       <input type="text" name="table_search" className="form-control float-right" placeholder="Search" />
@@ -54,27 +58,33 @@ const Companys = () => {
                   <table className="table table-hover text-nowrap">
                     <thead>
                       <tr>
-                        <th>ID</th>
-                        <th>Empresas</th>
-                        <th>CNPJ</th>
-                        <th>Status</th>
+                        <th>Equipamento</th>
+                        <th>Parimónio</th>
+                        <th>Descrição</th>
+                        <th>Situação</th>
+                        <th>Marca</th>
+                        <th>Setor</th>
+                        <th>Filial</th>
                         <th>Atualizado</th>
                         <th>Criado</th>
                       </tr>
                     </thead>
-                    <TableCompanys >
-                      {companys.map(item => (
-                        <TableCompanysItem
-                          company_name={item.company_name}
-                          cnpj={item.cnpj}
-                          status={item.status}
+                    <TableEquipments >
+                      {equipments.map(item => (
+                        <TableEquipmentsItem
+                          equipment_name={item.equipment_name}
+                          patrimony={item.patrimony}
+                          description={item.description}
+                          branch={item.branch}
+                          brand={item.brand}
+                          sector={item.sector}
+                          situation={item.situation}
                           created_at={item.created_at}
                           updated_at={item.updated_at}
-                          id={item.id}
                           key={item.id}
                         />
                       ))}
-                    </TableCompanys>
+                    </TableEquipments>
                     
                   </table>
                 </div>
@@ -84,7 +94,7 @@ const Companys = () => {
         </div>
       </section>
     </div>
-  )
+  );
 }
 
-export default Companys;
+export default Equipments;

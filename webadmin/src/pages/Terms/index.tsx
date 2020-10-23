@@ -1,45 +1,44 @@
-import React, { useEffect, useState } from 'react';
-import TableCompanys from '../../components/Table/TableCompanys';
-import TableCompanysItem from '../../components/Table/TableCompanys/TableCompanysItem';
+import React, { useEffect, useState } from 'react'
+import TableTerms from '../../components/Table/TableTerms';
+import TableTermsItem from '../../components/Table/TableTerms/TableTermsItem';
 import TopHeader from '../../components/TopHeader';
-
 import api from '../../services/api';
 
-interface Companys {
+interface Terms {
   id: string;
-  company_name: string;
-  cnpj: string;
+  term_name: string;
   created_at: Date;
   updated_at: Date;
-  status: {
-    status_name: string,
-    status: boolean,
+  equipment: {
+    equipment_name: string,
+    patrimony: string,
+    situation: {
+      situation_name: string;
+    }
+  }
+  user: {
+    full_name: string,
   }
 }
 
-const Companys = () => {
-  const [companys, setCompanys] = useState<Companys[]>([]);
-  useEffect(
-    () => {
-      api.get('companys').then(
-        response => {
-          setCompanys(response.data);
-          
-        }
-      );
-    }, []
-  );
-
+const Terms = () => {
+  const [terms, setTerms] = useState<Terms[]>([]);
+  
+  useEffect(() => {
+    api.get('terms').then(response => {
+      setTerms(response.data)
+    });
+  }, []);
   return (
     <div className="content-wrapper">
-      <TopHeader menu="Empresas" />
+      <TopHeader menu="Termos" />
       <section className="content">
         <div className="container-fluid">
           <div className="row">
             <div className="col-12">
               <div className="card">
                 <div className="card-header">
-                  <h3 className="card-title">Estados cadastrados:</h3>
+                  <h3 className="card-title">Termos cadastrados:</h3>
                   <div className="card-tools">
                     <div className="input-group input-group-sm" style={{ width: 150 }}>
                       <input type="text" name="table_search" className="form-control float-right" placeholder="Search" />
@@ -54,27 +53,27 @@ const Companys = () => {
                   <table className="table table-hover text-nowrap">
                     <thead>
                       <tr>
-                        <th>ID</th>
-                        <th>Empresas</th>
-                        <th>CNPJ</th>
-                        <th>Status</th>
+                        <th>Termo</th>
+                        <th>Usuario</th>
+                        <th>Equipamento</th>
+                        <th>Património</th>
+                        <th>Situação</th>
                         <th>Atualizado</th>
                         <th>Criado</th>
                       </tr>
                     </thead>
-                    <TableCompanys >
-                      {companys.map(item => (
-                        <TableCompanysItem
-                          company_name={item.company_name}
-                          cnpj={item.cnpj}
-                          status={item.status}
+                    <TableTerms >
+                      {terms.map(item => (
+                        <TableTermsItem
+                          term_name={item.term_name}
+                          equipment={item.equipment}
+                          user={item.user}
                           created_at={item.created_at}
                           updated_at={item.updated_at}
-                          id={item.id}
                           key={item.id}
                         />
                       ))}
-                    </TableCompanys>
+                    </TableTerms>
                     
                   </table>
                 </div>
@@ -84,7 +83,7 @@ const Companys = () => {
         </div>
       </section>
     </div>
-  )
+  );
 }
 
-export default Companys;
+export default Terms;

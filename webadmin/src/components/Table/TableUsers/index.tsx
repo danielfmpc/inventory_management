@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class TableSituations extends Component {
+export default class TableUsers extends Component {
   render() {
     const { children } = this.props;
     return (

@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import TableCompanys from '../../components/Table/TableCompanys';
-import TableCompanysItem from '../../components/Table/TableCompanys/TableCompanysItem';
 import TablePermissions from '../../components/Table/TablePermissions';
 import TablePermissionsItem from '../../components/Table/TablePermissions/TablePermissionsItem';
 import TopHeader from '../../components/TopHeader';
@@ -10,7 +8,7 @@ import api from '../../services/api';
 interface Permissions {
   id: string;
   permission_name: string;
-  permission_code: string;
+  permission_code: number;
   created_at: Date;
   updated_at: Date;
 }

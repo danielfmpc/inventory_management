@@ -1,30 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import TableCompanys from '../../components/Table/TableCompanys';
-import TableCompanysItem from '../../components/Table/TableCompanys/TableCompanysItem';
+import TableSectors from '../../components/Table/TableSectors';
+import TableSectorsItem from '../../components/Table/TableSectors/TableSectorsItem';
 import TopHeader from '../../components/TopHeader';
 
 import api from '../../services/api';
 
-interface Companys {
+interface Sectors {
   id: string;
-  company_name: string;
-  cnpj: string;
+  sector_name: string;
   created_at: Date;
   updated_at: Date;
-  status: {
-    status_name: string,
-    status: boolean,
-  }
 }
 
-const Companys = () => {
-  const [companys, setCompanys] = useState<Companys[]>([]);
+const Sectors = () => {
+  const [sectors, setSectors] = useState<Sectors[]>([]);
   useEffect(
     () => {
-      api.get('companys').then(
+      api.get('sectors').then(
         response => {
-          setCompanys(response.data);
-          
+          setSectors(response.data);
         }
       );
     }, []
@@ -32,14 +26,14 @@ const Companys = () => {
 
   return (
     <div className="content-wrapper">
-      <TopHeader menu="Empresas" />
+      <TopHeader menu="Situação" />
       <section className="content">
         <div className="container-fluid">
           <div className="row">
             <div className="col-12">
               <div className="card">
                 <div className="card-header">
-                  <h3 className="card-title">Estados cadastrados:</h3>
+                  <h3 className="card-title">Permissões cadastrados:</h3>
                   <div className="card-tools">
                     <div className="input-group input-group-sm" style={{ width: 150 }}>
                       <input type="text" name="table_search" className="form-control float-right" placeholder="Search" />
@@ -55,27 +49,22 @@ const Companys = () => {
                     <thead>
                       <tr>
                         <th>ID</th>
-                        <th>Empresas</th>
-                        <th>CNPJ</th>
-                        <th>Status</th>
+                        <th>Setores</th>
                         <th>Atualizado</th>
                         <th>Criado</th>
                       </tr>
                     </thead>
-                    <TableCompanys >
-                      {companys.map(item => (
-                        <TableCompanysItem
-                          company_name={item.company_name}
-                          cnpj={item.cnpj}
-                          status={item.status}
+                    <TableSectors >
+                      {sectors.map(item => (
+                        <TableSectorsItem
+                          sector_name={item.sector_name}
                           created_at={item.created_at}
                           updated_at={item.updated_at}
                           id={item.id}
                           key={item.id}
                         />
                       ))}
-                    </TableCompanys>
-                    
+                    </TableSectors>                    
                   </table>
                 </div>
               </div>
@@ -87,4 +76,4 @@ const Companys = () => {
   )
 }
 
-export default Companys;
+export default Sectors;

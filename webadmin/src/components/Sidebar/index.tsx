@@ -10,7 +10,7 @@ export default class Sidebar extends Component {
 
       <aside className="main-sidebar sidebar-dark-primary elevation-4">
         {/* Brand Logo */}
-        <Link to="/" className="brand-link active" >
+        <Link to="/dashboard" className="brand-link active" >
           <img src={logo} alt="AdminLTE Logo" className="brand-image img-circle elevation-3" style={{ opacity: '.8' }} />
           <span className="brand-text font-weight-light">AdminLTE 3</span>
         </Link>
@@ -31,7 +31,7 @@ export default class Sidebar extends Component {
               {/* Add icons to the links using the .nav-icon class
          with font-awesome or any other icon font library */}
               <li className="nav-item">
-                <Link to="/" className="nav-link">
+                <Link to="/dashboard" className="nav-link">
                   <i className="nav-icon fas fa-tachometer-alt" />
                   <p>
                     Dashboard
@@ -39,7 +39,7 @@ export default class Sidebar extends Component {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/status" className="nav-link">
+                <Link to="/dashboard/status" className="nav-link">
                   <i className="nav-icon far fa-check-square" />
                   <p>
                     Status
@@ -48,7 +48,7 @@ export default class Sidebar extends Component {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/states" className="nav-link">
+                <Link to="/dashboard/states" className="nav-link">
                   <i className="nav-icon far fa-image" />
                   <p>
                     Estados
@@ -56,7 +56,7 @@ export default class Sidebar extends Component {
                 </Link>
               </li>   
               <li className="nav-item">
-                <Link to="/brands" className="nav-link">
+                <Link to="/dashboard/brands" className="nav-link">
                   <i className="nav-icon far fa-image" />
                   <p>
                     Marcas
@@ -64,7 +64,7 @@ export default class Sidebar extends Component {
                 </Link>
               </li>  
               <li className="nav-item">
-                <Link to="/companys" className="nav-link">
+                <Link to="/dashboard/companys" className="nav-link">
                   <i className="nav-icon far fa-image" />
                   <p>
                     Empresas
@@ -72,7 +72,7 @@ export default class Sidebar extends Component {
                 </Link>
               </li>   
               <li className="nav-item">
-                <Link to="/permissions" className="nav-link">
+                <Link to="/dashboard/permissions" className="nav-link">
                   <i className="nav-icon far fa-image" />
                   <p>
                     Permissões
@@ -80,7 +80,7 @@ export default class Sidebar extends Component {
                 </Link>
               </li>   
               <li className="nav-item">
-                <Link to="/situations" className="nav-link">
+                <Link to="/dashboard/situations" className="nav-link">
                   <i className="nav-icon far fa-image" />
                   <p>
                     Situação
@@ -88,13 +88,45 @@ export default class Sidebar extends Component {
                 </Link>
               </li> 
               <li className="nav-item">
-                <Link to="/sectors" className="nav-link">
+                <Link to="/dashboard/sectors" className="nav-link">
                   <i className="nav-icon far fa-image" />
                   <p>
                     Setores
                   </p>
                 </Link>
-              </li>     
+              </li>
+              <li className="nav-item">
+                <Link to="/dashboard/equipments" className="nav-link">
+                  <i className="nav-icon far fa-image" />
+                  <p>
+                    Equipamentos
+                  </p>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/dashboard/users" className="nav-link">
+                  <i className="nav-icon far fa-image" />
+                  <p>
+                    Usuários
+                  </p>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/dashboard/terms" className="nav-link">
+                  <i className="nav-icon far fa-image" />
+                  <p>
+                    Termos
+                  </p>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/dashboard/branchs" className="nav-link">
+                  <i className="nav-icon far fa-image" />
+                  <p>
+                    Filiais
+                  </p>
+                </Link>
+              </li>
               <li className="nav-header">MISCELLANEOUS</li>
             </ul>
           </nav>

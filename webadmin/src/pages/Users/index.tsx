@@ -1,38 +1,44 @@
-import React, { useEffect, useState } from 'react';
-import TableCompanys from '../../components/Table/TableCompanys';
-import TableCompanysItem from '../../components/Table/TableCompanys/TableCompanysItem';
+import React, { useEffect, useState } from 'react'
+import TableUsers from '../../components/Table/TableUsers';
+import TableUsersItem from '../../components/Table/TableUsers/TableUsersItem';
 import TopHeader from '../../components/TopHeader';
-
 import api from '../../services/api';
 
-interface Companys {
+interface Users {
   id: string;
-  company_name: string;
-  cnpj: string;
+  full_name: string;
+  cpf: string;
+  birth: Date;
+  email: string;
   created_at: Date;
   updated_at: Date;
-  status: {
+  status?: {
     status_name: string,
     status: boolean,
   }
+  branch?: {
+    branch_name: string,
+  }
+  sector?: {
+    sector_name: string,
+  }
+  permissions?: {
+    permission_name: string,
+    permission_code: number,
+  }
 }
 
-const Companys = () => {
-  const [companys, setCompanys] = useState<Companys[]>([]);
-  useEffect(
-    () => {
-      api.get('companys').then(
-        response => {
-          setCompanys(response.data);
-          
-        }
-      );
-    }, []
-  );
-
+const Users = () => {
+  const [users, setUsers] = useState<Users[]>([]);
+  
+  useEffect(() => {
+    api.get('users').then(response => {
+      setUsers(response.data)
+    });
+  }, []);
   return (
     <div className="content-wrapper">
-      <TopHeader menu="Empresas" />
+      <TopHeader menu="Usuarios" />
       <section className="content">
         <div className="container-fluid">
           <div className="row">
@@ -54,27 +60,35 @@ const Companys = () => {
                   <table className="table table-hover text-nowrap">
                     <thead>
                       <tr>
-                        <th>ID</th>
-                        <th>Empresas</th>
-                        <th>CNPJ</th>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>Nascimento</th>
+                        <th>Email</th>
+                        <th>Filial</th>
+                        <th>Permissão</th>
+                        <th>Setor</th>
                         <th>Status</th>
                         <th>Atualizado</th>
                         <th>Criado</th>
                       </tr>
                     </thead>
-                    <TableCompanys >
-                      {companys.map(item => (
-                        <TableCompanysItem
-                          company_name={item.company_name}
-                          cnpj={item.cnpj}
+                    <TableUsers >
+                      {users.map(item => (
+                        <TableUsersItem
+                          full_name={item.full_name}
+                          birth={item.birth}
+                          cpf={item.cpf}
+                          email={item.email}
+                          branch={item.branch}
+                          permissions={item.permissions}
+                          sector={item.sector}
                           status={item.status}
                           created_at={item.created_at}
                           updated_at={item.updated_at}
-                          id={item.id}
                           key={item.id}
                         />
                       ))}
-                    </TableCompanys>
+                    </TableUsers>
                     
                   </table>
                 </div>
@@ -84,7 +98,7 @@ const Companys = () => {
         </div>
       </section>
     </div>
-  )
+  );
 }
 
-export default Companys;
+export default Users;

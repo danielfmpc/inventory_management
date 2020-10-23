@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 interface Props {
   id: string;
   permission_name: string;
-  permission_code: string;
+  permission_code: number;
   created_at: Date;
   updated_at: Date;
 }

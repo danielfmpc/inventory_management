@@ -1,29 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import TableCompanys from '../../components/Table/TableCompanys';
-import TableCompanysItem from '../../components/Table/TableCompanys/TableCompanysItem';
+import TableBranchs from '../../components/Table/TableBranchs';
+import TableBranchsItem from '../../components/Table/TableBranchs/TableBranchsItem';
 import TopHeader from '../../components/TopHeader';
 
 import api from '../../services/api';
 
-interface Companys {
+interface Branchs {
   id: string;
-  company_name: string;
-  cnpj: string;
-  created_at: Date;
-  updated_at: Date;
+  branch_name: string;
+  created_at: string;
+  updated_at: string;
+  state: {
+    state_name: string;
+  }
   status: {
-    status_name: string,
-    status: boolean,
+    status_name: string;
+    status: boolean
+  }
+  company: {
+    company_name: string;
   }
 }
 
-const Companys = () => {
-  const [companys, setCompanys] = useState<Companys[]>([]);
+const Branchs = () => {
+  const [branchs, setBranchs] = useState<Branchs[]>([]);
   useEffect(
     () => {
-      api.get('companys').then(
+      api.get('branchs').then(
         response => {
-          setCompanys(response.data);
+          setBranchs(response.data);
           
         }
       );
@@ -32,14 +37,14 @@ const Companys = () => {
 
   return (
     <div className="content-wrapper">
-      <TopHeader menu="Empresas" />
+      <TopHeader menu="Filiais" />
       <section className="content">
         <div className="container-fluid">
           <div className="row">
             <div className="col-12">
               <div className="card">
                 <div className="card-header">
-                  <h3 className="card-title">Estados cadastrados:</h3>
+                  <h3 className="card-title">Filiais cadastradas:</h3>
                   <div className="card-tools">
                     <div className="input-group input-group-sm" style={{ width: 150 }}>
                       <input type="text" name="table_search" className="form-control float-right" placeholder="Search" />
@@ -54,27 +59,27 @@ const Companys = () => {
                   <table className="table table-hover text-nowrap">
                     <thead>
                       <tr>
-                        <th>ID</th>
+                        <th>Filial</th>
                         <th>Empresas</th>
-                        <th>CNPJ</th>
+                        <th>Estado</th>
                         <th>Status</th>
                         <th>Atualizado</th>
                         <th>Criado</th>
                       </tr>
                     </thead>
-                    <TableCompanys >
-                      {companys.map(item => (
-                        <TableCompanysItem
-                          company_name={item.company_name}
-                          cnpj={item.cnpj}
+                    <TableBranchs >
+                      {branchs.map(item => (
+                        <TableBranchsItem
+                          branch_name={item.branch_name}
+                          company={item.company}
+                          state={item.state}
                           status={item.status}
                           created_at={item.created_at}
                           updated_at={item.updated_at}
-                          id={item.id}
                           key={item.id}
                         />
                       ))}
-                    </TableCompanys>
+                    </TableBranchs>
                     
                   </table>
                 </div>
@@ -87,4 +92,4 @@ const Companys = () => {
   )
 }
 
-export default Companys;
+export default Branchs;
